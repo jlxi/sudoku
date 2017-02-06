@@ -1,0 +1,39 @@
+In the beginning of my code, you have a board with integers and empty arrays.
+The arrays are a list of the possible numbers that could go in each empty tile.
+First, you run insertposs() which inserts the numbers 1-9 into each empty array in the board.
+Then, you run row(), column() and box().
+
+These functions check each row, column, and box (accordingly) and removes what numbers are
+already present in the row, column, or box. For example, if row 1 of the board contained
+an 8,7, and 2 at first, 8,7 and 2 will be removed from the possibility list of each empty
+tile, because you know that there will not be another 8 7 or 2 in the same row. 
+
+Then, I have the function reduceposs() which will update the possibility lists for empty tiles
+each time a new number is inserted. For example, if a 3 is inserted in a tile, the number 3
+must be removed from the possibility list of each empty tile that is in the same 
+row, column, and box as the updated tile. 
+
+For solving, there is rowanswer(), colanswer(), and boxanswer(). If a number is only possible
+in one tile for that row, you know that is the currect tile for the number. Then that number
+is inserted into the tile and the possiblity lists for all empty tiles in the same row, column,
+and box as the updated tile is updated. For example, in one row, only one empty tile contains
+the 1 in the possiblity list, it means 1 cannot go in any other empty tile of the same row.
+So you're sure that 1 will go in that tile, and so 1 is inserted and the possiblity list of 
+every empty tile that's in the same row, column, and box as that tile is updated. 
+
+Rowupdate(), colupdate(), and boxupdate() are the functions I use to update the possiblity lists
+when the correct answer for a tile has been found. If the number that was just inserted is in the
+possiblity list for any row, column, or box the tile is in, that number is removed.
+
+Updatesingle() is a function that will insert the number when there is only 1 number in a 
+possibility list. For example, if the possibility list of a certain empty tile only contains
+the number 2, you know that the number 2 has to go in that tile. And so the empty tile's
+possibility lists are updated for each row, column, and box that the tile is in. 
+
+The function checkdone() checks every item in the 2d board array. It will return False if
+there are still empty tiles in the board, aka not every item in the board is an integer.
+If every item in the board is an integer, you know the board is completed and it returns
+True.
+
+Answer() is the function that is continuously looped until the board is complete, which is
+when checkdone() returns True. 
